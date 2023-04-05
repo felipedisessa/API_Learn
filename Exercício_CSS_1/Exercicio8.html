@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercíco8</title>
+	<style>
+		nav a {
+			display: inline-block;
+			padding: 10px;
+			background-color: #ccc;
+			color: #000;
+			font-weight: normal;
+			text-decoration: none;
+		}
+
+		nav a:hover {
+			background-color: #666;
+			font-weight: bold;
+		}
+
+		#user-name {
+			color: #000;
+		}
+
+		#user-name:hover {
+			text-transform: uppercase;
+			color: #f00;
+		}
+		#user-photo {
+			display: block;
+			margin: 0 auto;
+			width: 100px;
+			height: 100px;
+			background-image: url("foto1.jpg");
+			background-size: cover;
+			background-position: left;
+			border-radius: 50%;
+			transition: background-image 0.5s ease-in-out;
+		}
+	</style>
+</head>
+<body>
+    	<main>
+		<h1><span id="user-name">João Silva</span>!</h1>
+		<div id="user-photo"></div>
+		<div>
+			<p>Favoritos.</p>
+		</div>
+	</main>
+	<header>
+		<nav>
+			<a href="#">Feed de notícias</a> <br>
+			<a href="#">Mensagens</a><br>
+			<a href="#">Eventos</a>
+		</nav>
+	</header>
+
+</body>
+</html>

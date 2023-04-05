@@ -1,0 +1,24 @@
+#barra_lateral {
+    width: 200px;
+    height: 300px;
+    background-color: #9b231c;
+    border: 2px solid #000;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    padding: 10px;
+    
+}
+
+div p {
+    width: 100%;
+}
+
+p {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 270px;
+    text-align: justify;
+}
+

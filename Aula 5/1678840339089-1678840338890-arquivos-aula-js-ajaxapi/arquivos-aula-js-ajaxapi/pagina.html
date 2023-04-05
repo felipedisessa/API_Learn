@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>JQUERY - Ajax</title>
+   
+    <!--Estilo bootstrap-->
+    <!-- Referência: https://getbootstrap.com.br/docs/4.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+
+    <link href="estiloprincipal.css"rel='stylesheet' type="text/css"/>
+    </head> 
+<body>
+    <div class="minhapagina">
+    <form class="precisa-validar" id="formulario-principal" novalidate>
+        <div class="form-row">
+         
+            <div class="col-md-4 mb-3">
+              <label for="campo-titulo">Título</label>
+              <input type="text" class="form-control" id="campo-titulo" placeholder="Título" required>
+              
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="campo-resumo">Resumo</label>
+              <input type="text" class="form-control" id="campo-resumo" placeholder="Resumo" required>
+
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary" type="submit" id="btn-validar">Validar</button>
+
+        <a class="btn btn-primary" id="btn-enviar">Enviar</a>
+
+        <div id="dados"></div>
+        
+    </form>
+    </div>
+<script src="jquery-3.5.1.min.js" ></script>
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+        // Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+        (function() {
+          
+          window.addEventListener('load', function() {
+            // Identifica todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+            var forms = document.getElementsByClassName('precisa-validar');
+            
+            // Confere itens do formulário para evitar validação
+            var validacao = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+
+                form.classList.add('was-validated');
+
+              }, false);
+            });
+          }, false);
+        })();
+
+        var endpoint = 'https://jsonplaceholder.typicode.com';
+
+        
+
+        var fApi = {
+          requisicaoAdicionar : function (endpoint, valor) {
+            var titulo = $('#campo-titulo').val();
+            var resumo = $('#campo-resumo').val();
+
+            var valor = JSON.stringify({
+              title: titulo,
+              body: resumo,
+              userId: 1,
+              })
+
+            try{
+              $.ajax({
+                url: endpoint + '/posts',
+                data: valor,
+                type: 'POST',
+                contentType:'application/json',
+                dataType:'json',
+                success: function (result){
+                  //console.log(result)
+                  //let message = "Registro Efetuado" + result.title;
+                  let message = `Registro efetuado: ${result.title}`;
+                  alert(message)
+
+                  $('#btn-enviar').hide();
+                  $('#formulario-principal').trigger('reset');
+                  var tituloss = result.title;
+                  var resumoss = result.resumo;
+
+                
+
+                  $('#dados').html('<b>'+ titulo + " " +resumo + '<b>')
+
+                }
+              
+
+              });
+
+            } 
+
+            catch (e) {
+              console.log('Erro ao enviar requisição ajax .Detalhes: '+e.message);
+            }
+
+          },
+          resquisicaoConsultar : function () {
+            try {
+                $.ajax({
+                url: endpoint + '/posts',
+                data: null,
+                type: 'get',
+                contentType:'application/json',
+                dataType: 'json',
+                success: function (result) {
+                  console.log(result);
+                }
+                });
+                
+            }
+
+            catch (e){
+              console.log(e.message);
+            }
+
+          },
+          requisicaoDetalhada: function (pUrl, pType, pValor, pFuncSuccess, pFuncError, pFuncComplete, oFuncBeforeSend){
+            try{
+
+            }
+            catch (e) {
+              console.log('Erro ao enviar requisição ajax. Detalhes: ' + e.message);
+
+            }
+          }
+        }
+          $('#btn-enviar').click(function(){
+            //alert('teste');
+
+            var v =JSON.stringify({
+              title : $('#campo-titulo').val(),
+              body :$('#campo-titulo').val(),
+              userId : 1
+
+
+            });
+            if(document.getElementsByClassName('precisa-validar')[0].checkValidity())
+            fApi.requisicaoAdicionar(endpoint, v);
+            else
+            alert('Formulario invalido')
+
+            
+          });
+
+
+
+
+
+    </script>
+
+</body>
+</html>

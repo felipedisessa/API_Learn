@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="numCards">Número de cartas (1-52):</label>
+    <input type="number" id="numCards" name="numCards" min="1" max="52"><br><br>
+    
+    <label for="cardValue">Valor da carta (A, 2-10, J, Q, K):</label>
+    <select id="cardValue" name="cardValue">
+      <option value="ACE">A</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="JACK">J</option>
+      <option value="QUEEN">Q</option>
+      <option value="KING">K</option>
+    </select><br><br>
+    
+    <label for="cardSuit">Naipe da carta:</label>
+    <select id="cardSuit" name="cardSuit">
+      <option value="CLUBS">Paus</option>
+      <option value="DIAMONDS">Ouros</option>
+      <option value="HEARTS">Copas</option>
+      <option value="SPADES">Espadas</option>
+    </select><br><br>
+    
+    <input type="button" value="Pegar Carta" onclick="getCard()">
+  </form>
+  
+    
+</body>
+</html><form>
+    
